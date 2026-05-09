@@ -439,4 +439,4 @@ document.getElementById('pollutantSelect')
 
 loadData();
 
-setInterval(loadData,300000);
+setInterval(loadData,3600000);
