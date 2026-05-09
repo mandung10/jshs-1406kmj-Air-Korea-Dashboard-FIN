@@ -112,6 +112,8 @@ return json.response.body.items;
 
 async function loadData(){
 
+try{
+
 const idx=parseInt(document.getElementById('timeSelect').value);
 
 const [pm10,pm25,so2,no2,co,o3]=await Promise.all([
@@ -151,6 +153,15 @@ time:p10.dataTime
 fillCompare();
 
 render(allData);
+
+}catch(e){
+
+console.error(e);
+
+alert('현재 API 데이터를 불러올 수 없습니다.');
+
+}
+
 }
 
 function fillCompare(){
