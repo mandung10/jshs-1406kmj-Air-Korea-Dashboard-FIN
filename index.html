@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Air Korea Atmospheric Dashboard</title>
+
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+
+<body>
+
+<header>
+<div>
+<h1>Air Korea Atmospheric Dashboard</h1>
+<p>한국환경공단 에어코리아 OpenAPI 기반 실시간 대기오염 분석 플랫폼</p>
+</div>
+
+<div class="theme-buttons">
+<button onclick="setTheme('dark')">🌙 다크모드</button>
+<button onclick="setTheme('light')">☀️ 라이트모드</button>
+</div>
+</header>
+
+<section class="api-section">
+<h2>OpenAPI 제공 데이터</h2>
+
+<div class="api-grid">
+<div class="api-card"><h3>PM10</h3><p>미세먼지 농도</p><p><b>단위:</b> ㎍/㎥</p></div>
+<div class="api-card"><h3>PM2.5</h3><p>초미세먼지 농도</p><p><b>단위:</b> ㎍/㎥</p></div>
+<div class="api-card"><h3>SO₂</h3><p>아황산가스 농도</p><p><b>단위:</b> ppm</p></div>
+<div class="api-card"><h3>NO₂</h3><p>이산화질소 농도</p><p><b>단위:</b> ppm</p></div>
+<div class="api-card"><h3>CO</h3><p>일산화탄소 농도</p><p><b>단위:</b> ppm</p></div>
+<div class="api-card"><h3>O₃</h3><p>오존 농도</p><p><b>단위:</b> ppm</p></div>
+</div>
+</section>
+
+<div class="toolbar">
+
+<input type="text" id="searchInput" placeholder="지역 검색">
+
+<select id="timeSelect">
+<option value="0">최신 데이터</option>
+<option value="1">1시간 전</option>
+<option value="2">2시간 전</option>
+<option value="3">3시간 전</option>
+<option value="6">6시간 전</option>
+<option value="12">12시간 전</option>
+<option value="24">24시간 전</option>
+</select>
+
+<select id="pollutantSelect">
+<option value="pm10">미세먼지(PM10)</option>
+<option value="pm25">초미세먼지(PM2.5)</option>
+<option value="so2">아황산가스(SO₂)</option>
+<option value="no2">이산화질소(NO₂)</option>
+<option value="co">일산화탄소(CO)</option>
+<option value="o3">오존(O₃)</option>
+</select>
+
+<button onclick="searchRegion()">검색</button>
+<button onclick="resetDashboard()">초기화</button>
+
+</div>
+
+<div class="compare-box">
+<select id="compare1"></select>
+<select id="compare2"></select>
+<button onclick="compareRegions()">지역 비교</button>
+</div>
+
+<div class="chart-grid">
+<div class="card">
+<h2>지역별 대기오염 비교 그래프</h2>
+<canvas id="barChart"></canvas>
+</div>
+
+<div class="card">
+<h2>지역별 대기오염 분포 그래프</h2>
+<canvas id="doughnutChart"></canvas>
+</div>
+</div>
+
+<div class="map-card">
+<div id="map"></div>
+</div>
+
+<div id="compareResult"></div>
+
+<div id="result" class="result-grid"></div>
+
+<script src="script.js"></script>
+
+<footer style="text-align:center; padding:20px; opacity:.7; font-size:14px;">
+
+<p>
+데이터 출처 :
+한국환경공단 에어코리아 대기오염통계 OpenAPI
+(공공데이터포털 제공)
+</p>
+
+<p>
+공공누리 제3유형(출처표시 + 변경금지)에 따라 이용
+</p>
+
+</footer>
+
+</body>
+</html>
