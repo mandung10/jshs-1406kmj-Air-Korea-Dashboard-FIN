@@ -101,6 +101,12 @@ const res=await fetch(url);
 
 const json=await res.json();
 
+if(!json.response || !json.response.body){
+
+throw new Error('API 응답 오류');
+
+}
+
 return json.response.body.items;
 }
 
